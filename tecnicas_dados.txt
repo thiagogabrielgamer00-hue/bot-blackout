@@ -1,0 +1,53 @@
+Gojo;1;1
+Itadori;1;1
+Megumi;2;2
+Higuruma;1;2
+Takaba;0;1
+Ogi zenin;1;3
+Akuro otake;0;1
+Chojuro;0;3
+Nanako;0;3
+Mimiko;0;3
+Dagon;0;2
+Jogo;0;2
+Nanami;0;3
+Utahime;0;3
+Ui Ui;0;3
+Naoya;0;2
+Jinichi;0;2
+Bagmask;0;2
+Toge inumaki;0;2
+Larue;0;3
+Kashimo;1;2
+Yaga;0;2
+Smallpox;0;3
+Rika;0;1
+Yorozo;0;3
+Maru;0;2
+Uro;0;3
+Aoi todo;1;2
+Kusakabe;0;3
+Yuki;0;2
+Ranta zenin;0;3
+Sugawara mishizani;0;1
+Angel;1;3
+Maki;0;1
+Toji;1;1
+Cristal curse;0;3
+Dabura;1;1
+Choso;1;2
+Rozetzu;1;3
+Ryu;0;2
+Kurorushi;0;3
+Mei mei;1;3
+Panda;0;2
+Razenoki;0;3
+Hanami;0;2
+Uraume;1;2
+Mechamaru;0;2
+Gakuganji;0;3
+Takuma ino;0;2
+Hakari;1;1
+Mahoraga;1;1
+Geto;1;1
+s;0;1

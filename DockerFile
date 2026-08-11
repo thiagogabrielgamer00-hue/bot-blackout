@@ -1,0 +1,11 @@
+# Usa uma imagem oficial do Java 17 com Maven para compilar o bot
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
+
+# Usa uma imagem leve apenas para rodar o bot compiled
+FROM openjdk:17-jdk-slim
+COPY --from=build /target/JujutsuBot-1.0.jar app.jar
+
+# Comando que o Render vai usar para ligar o seu bot automático
+CMD ["java", "-jar", "app.jar"]
