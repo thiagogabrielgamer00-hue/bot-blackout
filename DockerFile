@@ -9,3 +9,4 @@ COPY --from=build /target/JujutsuBot-1.0.jar app.jar
 
 # Comando que o Render vai usar para ligar o seu bot automático
 CMD ["java", "-jar", "app.jar"]
+EXPOSE 8080
