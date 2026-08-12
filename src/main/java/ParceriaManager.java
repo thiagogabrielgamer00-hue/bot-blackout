@@ -13,7 +13,7 @@ public class ParceriaManager {
         e.reply("✅ Painel de Parcerias enviado!").setEphemeral(true).queue();
 
         String mensagem = "🤝 **CENTRAL DE PARCERIAS**\n\n" +
-                "**ShinjuEra RP**\n" +
+                "**Blackout Community RP**\n" +
                 "Deseja fazer uma parceria oficial com o nosso servidor?\n\n" +
                 "📋 **COMO FUNCIONA?**\n" +
                 "• Clique em 🤝 **Fazer Parceria**.\n" +
