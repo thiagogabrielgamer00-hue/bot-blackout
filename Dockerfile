@@ -12,3 +12,4 @@ EXPOSE 8080
 
 # Inicia o bot de Jujutsu
 CMD ["java", "-jar", "app.jar"]
+
