@@ -1,12 +1,14 @@
-# Usa uma imagem oficial do Java 17 com Maven para compilar o bot
-FROM maven:3.8.5-openjdk-17 AS build
+# Usa uma imagem oficial estável do Maven com Java 17 para compilar
+FROM maven:3.8.8-eclipse-temurin-17 AS build
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Usa uma imagem leve apenas para rodar o bot compiled
-FROM openjdk:17-jdk-slim
+# Usa uma imagem oficial estável e leve do Java 17 para rodar o bot
+FROM eclipse-temurin:17-jre-alpine
 COPY --from=build /target/JujutsuBot-1.0.jar app.jar
 
-# Comando que o Render vai usar para ligar o seu bot automático
-CMD ["java", "-jar", "app.jar"]
+# Abre a porta exigida pelo plano gratuito do Render
 EXPOSE 8080
+
+# Inicia o bot de Jujutsu
+CMD ["java", "-jar", "app.jar"]
