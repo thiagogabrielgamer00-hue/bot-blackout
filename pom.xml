@@ -19,6 +19,9 @@
         </dependency>
     </dependencies>
     <build>
+        <!-- Força o Maven a gerar o arquivo FINAL direto na pasta principal -->
+        <outputDirectory>target/classes</outputDirectory>
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -31,29 +34,13 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <!-- Salva o arquivo executável pesado solto na raiz -->
+                            <outputFile>${project.basedir}/app.jar</outputFile>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>Main</mainClass>
                                 </transformer>
                             </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy file="target/blackout-1.0-SNAPSHOT.jar" tofile="app.jar"/>
-                            </target>
                         </configuration>
                     </execution>
                 </executions>
