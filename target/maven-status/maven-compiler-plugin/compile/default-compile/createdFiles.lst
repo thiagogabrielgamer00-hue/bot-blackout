@@ -1,0 +1,7 @@
+Config.class
+Main.class
+ParceriaManager.class
+CommandRegistry.class
+AdminCommands.class
+WlManager.class
+FichaCommands.class
