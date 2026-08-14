@@ -12,24 +12,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <repositories>
-        <!-- Repositório mestre para buscar o JDA 4 e o LavaPlayer clássicos -->
+        <!-- Repositório mestre estável para bibliotecas clássicas do GitHub -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
     <dependencies>
-        <!-- CORREÇÃO: Puxa o JDA 4 clássico via Jitpack usando o repositório espelho estável -->
+        <!-- JDA 4 clássico via JitPack -->
         <dependency>
             <groupId>com.github.DV8FromTheWorld</groupId>
             <artifactId>JDA</artifactId>
             <version>v4.4.0</version> 
         </dependency>
-        <!-- LavaPlayer estável em versão clássica -->
+        <!-- CORREÇÃO: LavaPlayer clássico puxado direto do repositório original espelhado no JitPack -->
         <dependency>
-            <groupId>com.github.walkyst</groupId>
-            <artifactId>lavaplayer-fork</artifactId>
-            <version>1.3.97</version>
+            <groupId>com.github.sedmelluq</groupId>
+            <artifactId>lavaplayer</artifactId>
+            <version>1.3.77</version>
         </dependency>
     </dependencies>
     <build>
