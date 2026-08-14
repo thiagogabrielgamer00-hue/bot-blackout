@@ -12,18 +12,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <repositories>
-        <!-- Novo repositório central que hospeda as versões clássicas do JDA 4 e do LavaPlayer -->
+        <!-- Repositório mestre para buscar o JDA 4 e o LavaPlayer clássicos -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
     <dependencies>
-        <!-- Redireciona o download do JDA 4 antigo para o JitPack para evitar o timeout -->
+        <!-- CORREÇÃO: Puxa o JDA 4 clássico via Jitpack usando o repositório espelho estável -->
         <dependency>
-            <groupId>com.github.discord-jda</groupId>
+            <groupId>com.github.DV8FromTheWorld</groupId>
             <artifactId>JDA</artifactId>
-            <version>v4.4.0_352</version> 
+            <version>v4.4.0</version> 
         </dependency>
         <!-- LavaPlayer estável em versão clássica -->
         <dependency>
