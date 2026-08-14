@@ -171,7 +171,6 @@ public class Config {
                     texto = "";
                 }
 
-                // Evita quebrar o arquivo.
                 texto = texto
                         .replace("\r", " ")
                         .replace("\n", "\\n");

@@ -385,60 +385,6 @@ public class CommandRegistry {
                                 true));
 
         // =====================================================
-        // MÚSICA
-        // =====================================================
-
-        comandos.add(
-                Commands.slash(
-                        "play",
-                        "Toca uma música")
-                        .addOption(
-                                OptionType.STRING,
-                                "link",
-                                "URL ou busca",
-                                true));
-
-        comandos.add(
-                Commands.slash(
-                        "skip",
-                        "Pula a música"));
-
-        comandos.add(
-                Commands.slash(
-                        "stop",
-                        "Para a música"));
-
-        comandos.add(
-                Commands.slash(
-                        "queue",
-                        "Mostra a fila"));
-
-        comandos.add(
-                Commands.slash(
-                        "pause",
-                        "Pausa a música"));
-
-        comandos.add(
-                Commands.slash(
-                        "resume",
-                        "Continua a música"));
-
-        comandos.add(
-                Commands.slash(
-                        "volume",
-                        "Altera o volume")
-                        .addOption(
-                                OptionType.INTEGER,
-                                "volume",
-                                "0 a 100",
-                                true));
-
-        comandos.add(
-                Commands.slash(
-                        "nowplaying",
-                        "Mostra música atual"));
-
-        // =====================================================
         // ECONOMIA
         // =====================================================
 
@@ -643,7 +589,6 @@ public class CommandRegistry {
                     "[COMMANDS] Servidor " + ID_SERVIDOR +
                     " não encontrado.");
 
-            // Fallback global
             jda.updateCommands()
                     .addCommands(comandos)
                     .queue(
