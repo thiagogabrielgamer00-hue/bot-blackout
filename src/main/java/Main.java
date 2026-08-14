@@ -1,6 +1,5 @@
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.*;
-import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
@@ -335,7 +334,7 @@ System.out.println("=================================");
 
 CommandRegistry.registrar(jda);
 
-            } catch (LoginException e) {
+            } catch (Exception e) {
 
                 System.err.println(
                         "[DISCORD] Token inválido ou erro de login.");
