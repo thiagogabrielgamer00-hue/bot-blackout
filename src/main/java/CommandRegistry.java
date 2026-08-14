@@ -2,6 +2,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
+import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 
 public class CommandRegistry {
 
@@ -66,7 +67,7 @@ public class CommandRegistry {
                                 "Quantidade ocupada",
                                 true);
 
-        Commands gerenciar =
+        SlashCommandData gerenciar =
                 Commands.slash(
                         "gerenciar",
                         "Gerenciamento administrativo")
@@ -110,7 +111,7 @@ public class CommandRegistry {
                                 "Cargo",
                                 true);
 
-        Commands role =
+        SlashCommandData role =
                 Commands.slash(
                         "role",
                         "Gerenciamento de cargos")
@@ -589,6 +590,7 @@ public class CommandRegistry {
                     "[COMMANDS] Servidor " + ID_SERVIDOR +
                     " não encontrado.");
 
+            // Fallback global
             jda.updateCommands()
                     .addCommands(comandos)
                     .queue(
