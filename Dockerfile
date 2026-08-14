@@ -2,13 +2,13 @@
 FROM maven:3.8.8-eclipse-temurin-11 AS build
 WORKDIR /app
 
-# Cria uma configuração de espelhamento para redirecionar o site quebrado para um mirror ativo
-RUN mkdir -p /root/.m2 && echo '<settings><mirrors><mirror><id>central-mirror</id><mirrorOf>dv8tion</mirrorOf><url>https://apache.org</url></mirror></mirrors></settings>' > /root/.m2/settings.xml
+# Cria uma configuração de espelhamento agressiva (mirrorOf=*) que força o Maven a buscar sub-dependências no repositório oficial central estável da AWS
+RUN mkdir -p /root/.m2 && echo '<settings><mirrors><mirror><id>central-mirror</id><mirrorOf>*</mirrorOf><url>https://apache.org</url></mirror></mirrors></settings>' > /root/.m2/settings.xml
 
 # Copia todos os seus códigos originais para dentro do contêiner
 COPY . .
 
-# Executa o comando de compilação usando a rota de espelhamento limpa
+# Executa o comando de compilação usando a rota de espelhamento total limpa
 RUN mvn clean package -DskipTests -U
 
 # Estágio 2: Cria uma imagem leve contendo apenas o Java 11 para rodar o bot
