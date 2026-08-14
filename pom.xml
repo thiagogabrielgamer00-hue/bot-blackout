@@ -12,31 +12,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <repositories>
-        <!-- Repositório oficial para baixar o JDA clássico (v4) -->
-        <repository>
-            <id>jcenter</id>
-            <name>jcenter-bintray</name>
-            <url>https://bintray.com</url>
-        </repository>
-        <repository>
-            <id>dv8tion</id>
-            <name>mweb</name>
-            <url>https://dv8tion.net</url>
-        </repository>
-        <!-- Repositório oficial para buscar o LavaPlayer clássico -->
+        <!-- Novo repositório central que hospeda as versões clássicas do JDA 4 e do LavaPlayer -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
     <dependencies>
-        <!-- JDA Versão clássica estável compatível com seu código original -->
+        <!-- Redireciona o download do JDA 4 antigo para o JitPack para evitar o timeout -->
         <dependency>
-            <groupId>net.dv8tion</groupId>
+            <groupId>com.github.discord-jda</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.4.0_352</version> 
+            <version>v4.4.0_352</version> 
         </dependency>
-        <!-- LavaPlayer Versão clássica estável para áudio -->
+        <!-- LavaPlayer estável em versão clássica -->
         <dependency>
             <groupId>com.github.walkyst</groupId>
             <artifactId>lavaplayer-fork</artifactId>
