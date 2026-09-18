@@ -29,9 +29,9 @@ public class BotData {
 
                     // COLOQUE OS REINOS AQUI
 
-                    // "Reino de Eldoria",
-                    // "Reino de Valoria",
-                    // "Reino de Astoria"
+                    "Reino de Eldoria",
+                    "Reino de Valoria",
+                    "Reino de Astoria"
 
             ));
 
@@ -45,10 +45,10 @@ public class BotData {
 
                     // COLOQUE AS CLASSES AQUI
 
-                    // "Guerreiro",
-                    // "Mago",
-                    // "Arqueiro",
-                    // "Espadachin"
+                    "Guerreiro",
+                    "Mago",
+                    "Arqueiro",
+                    "Espadachin"
 
             ));
 
@@ -62,11 +62,11 @@ public class BotData {
 
                     // COLOQUE AS SUBCLASSES AQUI
 
-                    // "pescador",
-                    // "ferreiro",
-                    // "armadureiro",
-                    // "Caçador"
-                    // "Camponês"
+                     "pescador",
+                     "ferreiro",
+                     "armadureiro",
+                     "Caçador"
+                     "Camponês"
 
             ));
 
@@ -77,11 +77,11 @@ public class BotData {
 
     public static class Profile {
 
-        public String reino = "eldoria";
+        public String reino = "";
 
-        public String classe = "guerreiro";
+        public String classe = "";
 
-        public String subclasse = "pescador";
+        public String subclasse = "";
 
 
         public int girosReino =
