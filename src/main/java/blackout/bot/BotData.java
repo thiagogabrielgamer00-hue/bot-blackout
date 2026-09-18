@@ -1,89 +1,96 @@
 package br.blackout.bot;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BotData {
 
-    // =========================
-    // CONFIGURAÇÕES DA WL
-    // =========================
+    public static final long SUPER_USER_ID =
+            1333822923194105917L;
 
-    public long wlResultadosChannelId = 0L;
-    public long wlAprovacaoChannelId = 0L;
-    public long wlCategoriaId = 0L;
+    public static final List<Long> ADMIN_ROLE_IDS =
+            Arrays.asList(
+                    1419779498660073552L,
+                    1542736177839218708L,
+                    1419382153073922192L,
+                    1419778797376372846L
+            );
 
-    // Chance padrão de prodígio
-    public double chanceProdigio = 5.0;
-
-    // =========================
-    // VILAS
-    // =========================
-
-    public List<String> vilas = new ArrayList<>();
-
-    // =========================
-    // RARIDADES
-    // =========================
-
-    // Nome da raridade -> chance
-    public Map<String, Double> raridades = new LinkedHashMap<>();
-
-    // =========================
-    // CLÃS
-    // =========================
-
-    public Map<String, ClanData> clas = new LinkedHashMap<>();
-
-    // =========================
-    // PERGUNTAS WL
-    // =========================
-
-    public List<String> perguntasWL = new ArrayList<>();
-
-    public BotData() {
-
-        // Raridades padrão
-        raridades.put("Comum", 40.0);
-        raridades.put("Incomum", 30.0);
-        raridades.put("Raro", 18.0);
-        raridades.put("Épico", 9.0);
-        raridades.put("Lendário", 3.0);
-
-        // Vilas padrão
-        vilas.add("Konohagakure");
-        vilas.add("Sunagakure");
-        vilas.add("Kirigakure");
-        vilas.add("Kumogakure");
-        vilas.add("Iwagakure");
-
-        // Perguntas padrão
-        perguntasWL.add("Qual é seu nome e sua idade?");
-        perguntasWL.add("Qual é seu nick no Minecraft?");
-        perguntasWL.add("Por que deseja entrar no servidor?");
-        perguntasWL.add("Você possui experiência com Roleplay?");
-        perguntasWL.add("Como você reagiria a uma situação de conflito no RP?");
-    }
+    public static final int GIROS_PADRAO = 4;
 
 
-    public static class ClanData {
+    // ==================================================
+    // REINOS
+    // ==================================================
 
-        public String nome;
-        public String raridade;
-        public String classificacao;
+    public static final List<String> REINOS =
+            new ArrayList<>(Arrays.asList(
 
-        public ClanData() {
-        }
+                    // COLOQUE OS REINOS AQUI
 
-        public ClanData(
-                String nome,
-                String raridade,
-                String classificacao
-        ) {
+                    // "Reino de Eldoria",
+                    // "Reino de Valoria",
+                    // "Reino de Astoria"
 
-            this.nome = nome;
-            this.raridade = raridade;
-            this.classificacao = classificacao;
+            ));
 
-        }
+
+    // ==================================================
+    // CLASSES
+    // ==================================================
+
+    public static final List<String> CLASSES =
+            new ArrayList<>(Arrays.asList(
+
+                    // COLOQUE AS CLASSES AQUI
+
+                    // "Guerreiro",
+                    // "Mago",
+                    // "Arqueiro",
+                    // "Espadachin"
+
+            ));
+
+
+    // ==================================================
+    // SUBCLASSES
+    // ==================================================
+
+    public static final List<String> SUBCLASSES =
+            new ArrayList<>(Arrays.asList(
+
+                    // COLOQUE AS SUBCLASSES AQUI
+
+                    // "pescador",
+                    // "ferreiro",
+                    // "armadureiro",
+                    // "Caçador"
+                    // "Camponês"
+
+            ));
+
+
+    // ==================================================
+    // PERFIL
+    // ==================================================
+
+    public static class Profile {
+
+        public String reino = "";
+
+        public String classe = "";
+
+        public String subclasse = "";
+
+
+        public int girosReino =
+                GIROS_PADRAO;
+
+        public int girosClasse =
+                GIROS_PADRAO;
+
+        public int girosSubclasse =
+                GIROS_PADRAO;
     }
 }

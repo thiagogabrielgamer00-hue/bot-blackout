@@ -10,159 +10,83 @@ public class CommandRegistry {
 
         jda.updateCommands().addCommands(
 
-                // =========================
+                // ==========================================
                 // ROLL
-                // =========================
+                // ==========================================
 
                 Commands.slash(
                         "roll",
-                        "Rolete uma característica ninja"
+                        "Rola reino, classe ou subclasse"
                 )
+
                 .addOption(
                         OptionType.STRING,
                         "tipo",
-                        "O que deseja roletar",
+                        "reino, classe, subclasse ou completo",
                         true
                 ),
 
-                // =========================
-                // WL
-                // =========================
+
+                // ==========================================
+                // PERFIL
+                // ==========================================
 
                 Commands.slash(
-                        "wl",
-                        "Sistema administrativo da Whitelist"
+                        "perfil",
+                        "Mostra o perfil medieval de um jogador"
                 )
+
                 .addOption(
-                        OptionType.STRING,
-                        "acao",
-                        "Ação que deseja executar",
+                        OptionType.USER,
+                        "usuario",
+                        "Jogador que deseja consultar",
+                        false
+                ),
+
+
+                // ==========================================
+                // GIROS
+                // ==========================================
+
+                Commands.slash(
+                        "giros",
+                        "Define a quantidade de giros de um jogador"
+                )
+
+                .addOption(
+                        OptionType.USER,
+                        "usuario",
+                        "Jogador que receberá os giros",
                         true
                 )
-                .addOption(
-                        OptionType.CHANNEL,
-                        "canal",
-                        "Canal para configurar",
-                        false
-                )
+
                 .addOption(
                         OptionType.STRING,
-                        "texto",
-                        "Texto ou pergunta",
-                        false
+                        "tipo",
+                        "reino, classe, subclasse ou todos",
+                        true
                 )
+
                 .addOption(
                         OptionType.INTEGER,
-                        "numero",
-                        "Número da pergunta",
-                        false
-                ),
-
-                // =========================
-                // CLÃ
-                // =========================
-
-                Commands.slash(
-                        "clan",
-                        "Gerencie os clãs"
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "acao",
-                        "adicionar, editar, remover, listar ou info",
-                        true
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "nome",
-                        "Nome do clã",
-                        false
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "raridade",
-                        "Raridade do clã",
-                        false
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "classificacao",
-                        "Classificação do clã",
-                        false
-                ),
-
-                // =========================
-                // RARIDADE
-                // =========================
-
-                Commands.slash(
-                        "raridade",
-                        "Configure as raridades"
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "acao",
-                        "configurar, remover ou listar",
-                        true
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "nome",
-                        "Nome da raridade",
-                        false
-                )
-                .addOption(
-                        OptionType.NUMBER,
-                        "chance",
-                        "Chance da raridade",
-                        false
-                ),
-
-                // =========================
-                // VILA
-                // =========================
-
-                Commands.slash(
-                        "vila",
-                        "Gerencie as vilas"
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "acao",
-                        "adicionar, remover ou listar",
-                        true
-                )
-                .addOption(
-                        OptionType.STRING,
-                        "nome",
-                        "Nome da vila",
-                        false
-                ),
-
-                // =========================
-                // PRODÍGIO
-                // =========================
-
-                Commands.slash(
-                        "prodigio",
-                        "Configure a chance de prodígio"
-                )
-                .addOption(
-                        OptionType.NUMBER,
-                        "chance",
-                        "Nova chance em porcentagem",
+                        "quantidade",
+                        "Quantidade de giros",
                         true
                 )
 
-        ).queue(
+        )
+
+        .queue(
+
                 success ->
                         System.out.println(
-                                "✅ Comandos registrados!"
+                                "Comandos registrados."
                         ),
 
                 error -> {
+
                     System.err.println(
-                            "❌ Erro ao registrar comandos:"
+                            "Erro ao registrar comandos:"
                     );
 
                     error.printStackTrace();
