@@ -15,6 +15,24 @@ public class DataManager {
                     "medieval_profiles.txt"
             );
 
+    private static final Path REINOS_FILE =
+            Paths.get(
+                    "data",
+                    "reinos.txt"
+            );
+
+    private static final Path CLASSES_FILE =
+            Paths.get(
+                    "data",
+                    "classes.txt"
+            );
+
+    private static final Path SUBCLASSES_FILE =
+            Paths.get(
+                    "data",
+                    "subclasses.txt"
+            );
+
 
     private static final Map<Long, BotData.Profile> profiles =
             new ConcurrentHashMap<>();
@@ -28,17 +46,51 @@ public class DataManager {
 
         profiles.clear();
 
-
         try {
+
+            Files.createDirectories(
+                    DATA_FILE.getParent()
+            );
+
+
+            // ==========================================
+            // REINOS
+            // ==========================================
+
+            carregarLista(
+                    REINOS_FILE,
+                    BotData.REINOS
+            );
+
+
+            // ==========================================
+            // CLASSES
+            // ==========================================
+
+            carregarLista(
+                    CLASSES_FILE,
+                    BotData.CLASSES
+            );
+
+
+            // ==========================================
+            // SUBCLASSES
+            // ==========================================
+
+            carregarLista(
+                    SUBCLASSES_FILE,
+                    BotData.SUBCLASSES
+            );
+
+
+            // ==========================================
+            // PERFIS
+            // ==========================================
 
             if (!Files.exists(DATA_FILE)) {
 
-                Files.createDirectories(
-                        DATA_FILE.getParent()
-                );
-
                 System.out.println(
-                        "Nenhum banco de dados encontrado."
+                        "Nenhum banco de dados de perfis encontrado."
                 );
 
                 return;
@@ -162,6 +214,40 @@ public class DataManager {
             );
 
 
+            // ==========================================
+            // SALVAR REINOS
+            // ==========================================
+
+            salvarLista(
+                    REINOS_FILE,
+                    BotData.REINOS
+            );
+
+
+            // ==========================================
+            // SALVAR CLASSES
+            // ==========================================
+
+            salvarLista(
+                    CLASSES_FILE,
+                    BotData.CLASSES
+            );
+
+
+            // ==========================================
+            // SALVAR SUBCLASSES
+            // ==========================================
+
+            salvarLista(
+                    SUBCLASSES_FILE,
+                    BotData.SUBCLASSES
+            );
+
+
+            // ==========================================
+            // SALVAR PERFIS
+            // ==========================================
+
             StringBuilder data =
                     new StringBuilder();
 
@@ -277,6 +363,74 @@ public class DataManager {
             );
 
             e.printStackTrace();
+        }
+    }
+
+
+    // ==================================================
+    // SALVAR LISTA
+    // ==================================================
+
+    private static void salvarLista(
+            Path arquivo,
+            java.util.List<String> lista
+    ) throws IOException {
+
+        Files.write(
+
+                arquivo,
+
+                lista,
+
+                StandardCharsets.UTF_8,
+
+                StandardOpenOption.CREATE,
+
+                StandardOpenOption.TRUNCATE_EXISTING
+        );
+    }
+
+
+    // ==================================================
+    // CARREGAR LISTA
+    // ==================================================
+
+    private static void carregarLista(
+            Path arquivo,
+            java.util.List<String> lista
+    ) throws IOException {
+
+        if (!Files.exists(arquivo)) {
+
+            salvarLista(
+                    arquivo,
+                    lista
+            );
+
+            return;
+        }
+
+
+        java.util.List<String> linhas =
+                Files.readAllLines(
+                        arquivo,
+                        StandardCharsets.UTF_8
+                );
+
+
+        lista.clear();
+
+
+        for (String linha : linhas) {
+
+            String valor =
+                    linha.trim();
+
+
+            if (!valor.isEmpty()) {
+
+                lista.add(valor);
+            }
         }
     }
 

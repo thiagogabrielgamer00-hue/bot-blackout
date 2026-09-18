@@ -17,7 +17,7 @@ public class BotData {
                     1419778797376372846L
             );
 
-    public static final int GIROS_PADRAO = 4;
+    public static final int GIROS_PADRAO = 3;
 
 
     // ==================================================
@@ -26,8 +26,6 @@ public class BotData {
 
     public static final List<String> REINOS =
             new ArrayList<>(Arrays.asList(
-
-                    // COLOQUE OS REINOS AQUI
 
                     "Reino de Eldoria",
                     "Reino de Valoria",
@@ -42,8 +40,6 @@ public class BotData {
 
     public static final List<String> CLASSES =
             new ArrayList<>(Arrays.asList(
-
-                    // COLOQUE AS CLASSES AQUI
 
                     "Guerreiro",
                     "Mago",
@@ -60,13 +56,11 @@ public class BotData {
     public static final List<String> SUBCLASSES =
             new ArrayList<>(Arrays.asList(
 
-                    // COLOQUE AS SUBCLASSES AQUI
-
-                     "pescador",
-                     "ferreiro",
-                     "armadureiro",
-                     "Caçador",
-                     "Camponês"
+                    "pescador",
+                    "ferreiro",
+                    "armadureiro",
+                    "Caçador",
+                    "Camponês"
 
             ));
 

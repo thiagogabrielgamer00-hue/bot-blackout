@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         System.out.println("==============================");
-        System.out.println("       MEDIEVAL RP BOT");
+        System.out.println("       Blackout RP BOT");
         System.out.println("==============================");
 
         DataManager.load();
