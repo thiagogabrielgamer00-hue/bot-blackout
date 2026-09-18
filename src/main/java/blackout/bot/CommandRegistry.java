@@ -7,13 +7,15 @@ import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 
 public class CommandRegistry {
 
-    public static void register(JDA jda) {
+    public static void register(
+            JDA jda
+    ) {
 
         jda.updateCommands().addCommands(
 
-                // ==================================================
-                // /spin
-                // ==================================================
+                // =========================
+                // SPIN
+                // =========================
 
                 Commands.slash(
                         "spin",
@@ -26,10 +28,9 @@ public class CommandRegistry {
                         true
                 ),
 
-
-                // ==================================================
-                // /perfil
-                // ==================================================
+                // =========================
+                // PERFIL
+                // =========================
 
                 Commands.slash(
                         "perfil",
@@ -42,10 +43,9 @@ public class CommandRegistry {
                         false
                 ),
 
-
-                // ==================================================
-                // /giros
-                // ==================================================
+                // =========================
+                // GIROS
+                // =========================
 
                 Commands.slash(
                         "giros",
@@ -70,10 +70,9 @@ public class CommandRegistry {
                         true
                 ),
 
-
-                // ==================================================
-                // /reino
-                // ==================================================
+                // =========================
+                // REINO
+                // =========================
 
                 Commands.slash(
                         "reino",
@@ -109,10 +108,9 @@ public class CommandRegistry {
                         )
                 ),
 
-
-                // ==================================================
-                // /classe
-                // ==================================================
+                // =========================
+                // CLASSE
+                // =========================
 
                 Commands.slash(
                         "classe",
@@ -148,10 +146,9 @@ public class CommandRegistry {
                         )
                 ),
 
-
-                // ==================================================
-                // /subclasse
-                // ==================================================
+                // =========================
+                // SUBCLASSE
+                // =========================
 
                 Commands.slash(
                         "subclasse",
@@ -185,6 +182,87 @@ public class CommandRegistry {
                                 "listar",
                                 "Lista todas as subclasses"
                         )
+                ),
+
+                // =========================
+                // MUTE
+                // =========================
+
+                Commands.slash(
+                        "mute",
+                        "Silencia um jogador por 10 minutos"
+                )
+                .addOption(
+                        OptionType.USER,
+                        "usuario",
+                        "Jogador que será mutado",
+                        true
+                ),
+
+                // =========================
+                // BAN
+                // =========================
+
+                Commands.slash(
+                        "ban",
+                        "Bane um jogador"
+                )
+                .addOption(
+                        OptionType.USER,
+                        "usuario",
+                        "Jogador que será banido",
+                        true
+                ),
+
+                // =========================
+                // BAN TEMP
+                // =========================
+
+                Commands.slash(
+                        "bantemp",
+                        "Bane temporariamente um jogador"
+                )
+                .addOption(
+                        OptionType.USER,
+                        "usuario",
+                        "Jogador que será banido",
+                        true
+                )
+                .addOption(
+                        OptionType.INTEGER,
+                        "minutos",
+                        "Duração do ban em minutos",
+                        true
+                ),
+
+                // =========================
+                // MUSIC
+                // =========================
+
+                Commands.slash(
+                        "music",
+                        "Toca uma música na call"
+                )
+                .addOption(
+                        OptionType.STRING,
+                        "link",
+                        "Link da música",
+                        true
+                ),
+
+                Commands.slash(
+                        "music-stop",
+                        "Para a música"
+                ),
+
+                Commands.slash(
+                        "music-pause",
+                        "Pausa a música"
+                ),
+
+                Commands.slash(
+                        "music-resume",
+                        "Continua a música"
                 )
 
         ).queue(
