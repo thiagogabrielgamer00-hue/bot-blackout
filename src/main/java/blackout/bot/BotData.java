@@ -77,11 +77,11 @@ public class BotData {
 
     public static class Profile {
 
-        public String reino = "";
+        public String reino = "eldoria";
 
-        public String classe = "";
+        public String classe = "guerreiro";
 
-        public String subclasse = "";
+        public String subclasse = "pescador";
 
 
         public int girosReino =
