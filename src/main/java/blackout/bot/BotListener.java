@@ -1,7 +1,6 @@
 package br.blackout.bot;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -26,7 +25,7 @@ public class BotListener extends ListenerAdapter {
 
         switch (event.getName()) {
 
-            case "roll" ->
+            case "spin" ->
                     handleRoll(event);
 
             case "perfil" ->
@@ -34,12 +33,21 @@ public class BotListener extends ListenerAdapter {
 
             case "giros" ->
                     handleGiros(event);
+
+            case "reino" ->
+                    handleReino(event);
+
+            case "classe" ->
+                    handleClasse(event);
+
+            case "subclasse" ->
+                    handleSubclasse(event);
         }
     }
 
 
     // ==================================================
-    // ROLL
+    // SPIN
     // ==================================================
 
     private void handleRoll(
@@ -590,7 +598,7 @@ public class BotListener extends ListenerAdapter {
 
 
     // ==================================================
-    // GIROS
+    // GIROS - ADM
     // ==================================================
 
     private void handleGiros(
@@ -734,6 +742,504 @@ public class BotListener extends ListenerAdapter {
 
 
     // ==================================================
+    // REINOS - ADM
+    // ==================================================
+
+    private void handleReino(
+            SlashCommandInteractionEvent event
+    ) {
+
+        if (!isAdmin(event)) {
+
+            event.reply(
+                    "❌ Você não possui permissão para usar esse comando."
+            )
+
+            .setEphemeral(true)
+
+            .queue();
+
+            return;
+        }
+
+
+        String acao =
+                event
+                        .getSubcommandName();
+
+
+        switch (acao) {
+
+            case "adicionar" -> {
+
+                String nome =
+                        event
+                                .getOption("nome")
+                                .getAsString()
+                                .trim();
+
+
+                if (nome.isEmpty()) {
+
+                    event.reply(
+                            "❌ O nome do reino não pode estar vazio."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                if (
+                        BotData.REINOS
+                                .stream()
+                                .anyMatch(
+                                        reino ->
+                                                reino.equalsIgnoreCase(nome)
+                                )
+                ) {
+
+                    event.reply(
+                            "❌ Esse reino já existe."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                BotData.REINOS.add(nome);
+
+                DataManager.save();
+
+
+                event.reply(
+                        "✅ Reino **" +
+                        nome +
+                        "** adicionado com sucesso."
+                ).queue();
+            }
+
+
+            case "remover" -> {
+
+                String nome =
+                        event
+                                .getOption("nome")
+                                .getAsString()
+                                .trim();
+
+
+                String encontrado =
+                        BotData.REINOS
+                                .stream()
+                                .filter(
+                                        reino ->
+                                                reino.equalsIgnoreCase(nome)
+                                )
+                                .findFirst()
+                                .orElse(null);
+
+
+                if (encontrado == null) {
+
+                    event.reply(
+                            "❌ Esse reino não existe."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                BotData.REINOS.remove(encontrado);
+
+                DataManager.save();
+
+
+                event.reply(
+                        "✅ Reino **" +
+                        encontrado +
+                        "** removido com sucesso."
+                ).queue();
+            }
+
+
+            case "listar" -> {
+
+                if (BotData.REINOS.isEmpty()) {
+
+                    event.reply(
+                            "❌ Nenhum reino foi configurado ainda."
+                    ).queue();
+
+                    return;
+                }
+
+
+                StringBuilder lista =
+                        new StringBuilder();
+
+
+                for (String reino : BotData.REINOS) {
+
+                    lista.append("👑 ")
+                            .append(reino)
+                            .append("\n");
+                }
+
+
+                event.reply(
+                        "🏰 **REINOS CONFIGURADOS**\n\n" +
+                        lista
+                ).queue();
+            }
+        }
+    }
+
+
+    // ==================================================
+    // CLASSES - ADM
+    // ==================================================
+
+    private void handleClasse(
+            SlashCommandInteractionEvent event
+    ) {
+
+        if (!isAdmin(event)) {
+
+            event.reply(
+                    "❌ Você não possui permissão para usar esse comando."
+            )
+
+            .setEphemeral(true)
+
+            .queue();
+
+            return;
+        }
+
+
+        String acao =
+                event
+                        .getSubcommandName();
+
+
+        switch (acao) {
+
+            case "adicionar" -> {
+
+                String nome =
+                        event
+                                .getOption("nome")
+                                .getAsString()
+                                .trim();
+
+
+                if (nome.isEmpty()) {
+
+                    event.reply(
+                            "❌ O nome da classe não pode estar vazio."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                if (
+                        BotData.CLASSES
+                                .stream()
+                                .anyMatch(
+                                        classe ->
+                                                classe.equalsIgnoreCase(nome)
+                                )
+                ) {
+
+                    event.reply(
+                            "❌ Essa classe já existe."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                BotData.CLASSES.add(nome);
+
+                DataManager.save();
+
+
+                event.reply(
+                        "✅ Classe **" +
+                        nome +
+                        "** adicionada com sucesso."
+                ).queue();
+            }
+
+
+            case "remover" -> {
+
+                String nome =
+                        event
+                                .getOption("nome")
+                                .getAsString()
+                                .trim();
+
+
+                String encontrado =
+                        BotData.CLASSES
+                                .stream()
+                                .filter(
+                                        classe ->
+                                                classe.equalsIgnoreCase(nome)
+                                )
+                                .findFirst()
+                                .orElse(null);
+
+
+                if (encontrado == null) {
+
+                    event.reply(
+                            "❌ Essa classe não existe."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                BotData.CLASSES.remove(encontrado);
+
+                DataManager.save();
+
+
+                event.reply(
+                        "✅ Classe **" +
+                        encontrado +
+                        "** removida com sucesso."
+                ).queue();
+            }
+
+
+            case "listar" -> {
+
+                if (BotData.CLASSES.isEmpty()) {
+
+                    event.reply(
+                            "❌ Nenhuma classe foi configurada ainda."
+                    ).queue();
+
+                    return;
+                }
+
+
+                StringBuilder lista =
+                        new StringBuilder();
+
+
+                for (String classe : BotData.CLASSES) {
+
+                    lista.append("⚔️ ")
+                            .append(classe)
+                            .append("\n");
+                }
+
+
+                event.reply(
+                        "⚔️ **CLASSES CONFIGURADAS**\n\n" +
+                        lista
+                ).queue();
+            }
+        }
+    }
+
+
+    // ==================================================
+    // SUBCLASSES - ADM
+    // ==================================================
+
+    private void handleSubclasse(
+            SlashCommandInteractionEvent event
+    ) {
+
+        if (!isAdmin(event)) {
+
+            event.reply(
+                    "❌ Você não possui permissão para usar esse comando."
+            )
+
+            .setEphemeral(true)
+
+            .queue();
+
+            return;
+        }
+
+
+        String acao =
+                event
+                        .getSubcommandName();
+
+
+        switch (acao) {
+
+            case "adicionar" -> {
+
+                String nome =
+                        event
+                                .getOption("nome")
+                                .getAsString()
+                                .trim();
+
+
+                if (nome.isEmpty()) {
+
+                    event.reply(
+                            "❌ O nome da subclasse não pode estar vazio."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                if (
+                        BotData.SUBCLASSES
+                                .stream()
+                                .anyMatch(
+                                        subclasse ->
+                                                subclasse.equalsIgnoreCase(nome)
+                                )
+                ) {
+
+                    event.reply(
+                            "❌ Essa subclasse já existe."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                BotData.SUBCLASSES.add(nome);
+
+                DataManager.save();
+
+
+                event.reply(
+                        "✅ Subclasse **" +
+                        nome +
+                        "** adicionada com sucesso."
+                ).queue();
+            }
+
+
+            case "remover" -> {
+
+                String nome =
+                        event
+                                .getOption("nome")
+                                .getAsString()
+                                .trim();
+
+
+                String encontrado =
+                        BotData.SUBCLASSES
+                                .stream()
+                                .filter(
+                                        subclasse ->
+                                                subclasse.equalsIgnoreCase(nome)
+                                )
+                                .findFirst()
+                                .orElse(null);
+
+
+                if (encontrado == null) {
+
+                    event.reply(
+                            "❌ Essa subclasse não existe."
+                    )
+
+                    .setEphemeral(true)
+
+                    .queue();
+
+                    return;
+                }
+
+
+                BotData.SUBCLASSES.remove(encontrado);
+
+                DataManager.save();
+
+
+                event.reply(
+                        "✅ Subclasse **" +
+                        encontrado +
+                        "** removida com sucesso."
+                ).queue();
+            }
+
+
+            case "listar" -> {
+
+                if (BotData.SUBCLASSES.isEmpty()) {
+
+                    event.reply(
+                            "❌ Nenhuma subclasse foi configurada ainda."
+                    ).queue();
+
+                    return;
+                }
+
+
+                StringBuilder lista =
+                        new StringBuilder();
+
+
+                for (String subclasse : BotData.SUBCLASSES) {
+
+                    lista.append("🛡️ ")
+                            .append(subclasse)
+                            .append("\n");
+                }
+
+
+                event.reply(
+                        "🛡️ **SUBCLASSES CONFIGURADAS**\n\n" +
+                        lista
+                ).queue();
+            }
+        }
+    }
+
+
+    // ==================================================
     // ADMIN
     // ==================================================
 
@@ -750,6 +1256,7 @@ public class BotListener extends ListenerAdapter {
         }
 
 
+        // Usuário especial
         if (
                 event
                         .getUser()
@@ -762,16 +1269,7 @@ public class BotListener extends ListenerAdapter {
         }
 
 
-        if (
-                member.hasPermission(
-                        Permission.ADMINISTRATOR
-                )
-        ) {
-
-            return true;
-        }
-
-
+        // Cargos administrativos configurados no BotData
         return member
                 .getRoles()
                 .stream()

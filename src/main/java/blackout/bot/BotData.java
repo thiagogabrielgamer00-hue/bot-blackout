@@ -65,7 +65,7 @@ public class BotData {
                      "pescador",
                      "ferreiro",
                      "armadureiro",
-                     "Caçador"
+                     "Caçador",
                      "Camponês"
 
             ));
