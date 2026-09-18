@@ -9,7 +9,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.Color;
 import java.text.Normalizer;
-import java.time.Duration;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -901,7 +900,8 @@ public class BotListener extends ListenerAdapter {
         }
 
         alvo.timeoutFor(
-                Duration.ofMinutes(10)
+                10,
+                java.util.concurrent.TimeUnit.MINUTES
         )
         .reason(
                 "Mute por " +
@@ -971,10 +971,9 @@ public class BotListener extends ListenerAdapter {
 
         event.getGuild()
                 .ban(
-                        alvo,
+                        alvo.getUser(),
                         0,
-                        "Ban por " +
-                                event.getUser().getAsTag()
+                        java.util.concurrent.TimeUnit.SECONDS
                 )
                 .queue(
 
@@ -1056,10 +1055,9 @@ public class BotListener extends ListenerAdapter {
 
         event.getGuild()
                 .ban(
-                        alvo,
+                        alvo.getUser(),
                         0,
-                        "Ban temporário por " +
-                                event.getUser().getAsTag()
+                        java.util.concurrent.TimeUnit.SECONDS
                 )
                 .queue(
 
@@ -1083,8 +1081,21 @@ public class BotListener extends ListenerAdapter {
                                             );
 
                                             event.getGuild()
-                                                    .unban(userId)
-                                                    .queue();
+                                                    .unban(
+                                                            net.dv8tion.jda.api.entities.UserSnowflake
+                                                                    .fromId(userId)
+                                                    )
+                                                    .queue(
+                                                            ok ->
+                                                                    System.out.println(
+                                                                            "Ban temporário removido de " +
+                                                                                    userId
+                                                                    ),
+                                                            error ->
+                                                                    System.err.println(
+                                                                            "Não consegui remover o ban temporário."
+                                                                    )
+                                                    );
 
                                         } catch (
                                                 InterruptedException e

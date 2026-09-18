@@ -1,6 +1,7 @@
 package br.blackout.bot;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
+import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
@@ -138,7 +139,7 @@ public class MusicManager {
 
                     @Override
                     public void loadFailed(
-                            Exception exception
+                            FriendlyException exception
                     ) {
 
                         event.reply(
