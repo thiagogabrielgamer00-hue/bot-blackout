@@ -1,0 +1,7 @@
+br/blackout/bot/BotManager.class
+br/blackout/bot/BotData.class
+br/blackout/bot/BotData$Profile.class
+br/blackout/bot/CommandRegistry.class
+br/blackout/bot/Main.class
+br/blackout/bot/BotListener.class
+br/blackout/bot/DataManager.class

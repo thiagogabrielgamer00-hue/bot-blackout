@@ -1,0 +1,6 @@
+/workspaces/bot-blackout/src/main/java/blackout/bot/BotData.java
+/workspaces/bot-blackout/src/main/java/blackout/bot/BotListener.java
+/workspaces/bot-blackout/src/main/java/blackout/bot/BotManager.java
+/workspaces/bot-blackout/src/main/java/blackout/bot/CommandRegistry.java
+/workspaces/bot-blackout/src/main/java/blackout/bot/DataManager.java
+/workspaces/bot-blackout/src/main/java/blackout/bot/Main.java
