@@ -5,9 +5,10 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
-import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+
+import dev.lavalink.youtube.YoutubeAudioSourceManager;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
@@ -26,9 +27,14 @@ public class MusicManager {
 
     static {
 
-        AudioSourceManagers.registerRemoteSources(
-                PLAYER_MANAGER
-        );
+        /*
+         * YouTube Source atualizado.
+         * Substitui o sistema antigo do LavaPlayer.
+         */
+        YoutubeAudioSourceManager youtube =
+                new YoutubeAudioSourceManager();
+
+        PLAYER_MANAGER.registerSourceManager(youtube);
     }
 
     public static GuildMusicManager getGuildMusicManager(
@@ -102,10 +108,7 @@ public class MusicManager {
                             AudioPlaylist playlist
                     ) {
 
-                        if (
-                                playlist.getTracks()
-                                        .isEmpty()
-                        ) {
+                        if (playlist.getTracks().isEmpty()) {
 
                             event.reply(
                                     "❌ Nenhuma música encontrada."
@@ -115,8 +118,7 @@ public class MusicManager {
                         }
 
                         AudioTrack track =
-                                playlist.getTracks()
-                                        .get(0);
+                                playlist.getTracks().get(0);
 
                         manager.getScheduler()
                                 .queue(track);
@@ -142,14 +144,18 @@ public class MusicManager {
                             FriendlyException exception
                     ) {
 
+                        System.err.println(
+                                "Erro ao carregar música:"
+                        );
+
+                        exception.printStackTrace();
+
                         event.reply(
                                 "❌ Não consegui carregar a música.\n" +
                                 "Erro: `" +
                                 exception.getMessage() +
                                 "`"
                         ).setEphemeral(true).queue();
-
-                        exception.printStackTrace();
                     }
                 }
         );
